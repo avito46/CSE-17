@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .box {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Student Result Program</h2>
+
+<div class="box">
+    Enter Number of Subjects:<br><br>
+    <input type="number" id="sub" min="1"><br>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <p id="output"></p>
+</div>
+
+<script>
+function calculate() {
+
+    var subjects = document.getElementById("sub").value;
+
+    if(subjects <= 0 || subjects === "") {
+        alert("Please enter valid number of subjects");
+        return;
+    }
+
+    var total = 0;
+
+    for(var i = 1; i <= subjects; i++) {
+        var marks = prompt("Enter marks of subject " + i);
+
+        if(marks === "" || marks === null || isNaN(marks)) {
+            alert("Invalid input! Please enter numbers only.");
+            return;
+        }
+
+        total += Number(marks);
+    }
+
+    var average = total / subjects;
+
+    var grade, result;
+
+    if(average >= 60) {
+        grade = "A";
+        result = "Pass";
+    }
+    else if(average >= 50) {
+        grade = "B";
+        result = "Pass";
+    }
+    else if(average >= 40) {
+        grade = "C";
+        result = "Pass";
+    }
+    else {
+        grade = "D";
+        result = "Fail";
+    }
+
+    document.getElementById("output").innerHTML =
+        "<b>Total Marks:</b> " + total + "<br>" +
+        "<b>Average Marks:</b> " + average.toFixed(2) + "<br>" +
+        "<b>Grade:</b> " + grade + "<br>" +
+        "<b>Result:</b> " + result;
+}
+</script>
+
+</body>
+</html>
